@@ -23,19 +23,24 @@
         </video>
     </div>
     <div class="spotify-player">
-        <img class="track-image" id="track-image" alt="">
         <div class="track-info">
-            <p id="track-name" class="track-name">Not playing</p>
-            <p id="artist-name" class="artist-name">No name</p>
+            <img id="track-image" alt="No image available" src="./static/noimage.svg">
+            <div class="artist-info">
+                <p id="track-name">Not playing</p>
+                <p id="artist-name">No name</p>
+            </div>
         </div>
         <div class="controls">
             <button id="prev-button">&lt;&lt;</button>
             <button id="play-pause-button">▶</button>
             <button id="next-button">&gt;&gt;</button>
-            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
+            <div class="duration">
+                <input type="range" id="track-duration" value="0" min="0" max="100" step="1">
+            </div>
         </div>
-        <div class="duration">
-            <input type="range" id="track-duration" value="0" min="0" max="10" step="0.01">
+        <div class="volume-input">
+            <img id="audio-btn" src="./static/audio.svg">
+            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
         </div>
     </div>
     <footer class="footer"><p>Contact us: email@example.com</p></footer>

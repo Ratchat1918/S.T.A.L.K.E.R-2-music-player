@@ -7,8 +7,8 @@
     src: url('../static/Capture\ it.ttf') format('truetype');
 }
 body{
-    max-height: 100vh;
-    max-width: 100vw;
+    width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
     display: grid;
@@ -99,12 +99,10 @@ body{
     grid-area: navbar;
     display: flex;
     align-items: center;
-    justify-self: flex-start;
     color: white;
     background-color: rgb(31, 31, 31);
     font-family: 'AmazS.T.A.L.K.E.R.Italic';
     border-bottom: 1px solid #bacb00;
-    width: 100%;
     padding: 1rem;
     min-height: 4em;
     margin: 0;
@@ -119,7 +117,7 @@ body{
     flex-direction: column;
     align-items: center;
     font-family: 'AmazS.T.A.L.K.E.R.Italic';
-    font-size: 5em;
+    font-size: 6em;
     background-color: rgb(31, 31, 31);
     color: white;
     border-right: 1px solid #bacb00;
@@ -147,13 +145,17 @@ body{
     padding: 0;
     margin: 0;
     max-height: 32em;
+    width: 100%;
+    min-width: 0;
 }
 .footer{
+    display: flex;
     grid-area: footer;
     background-color: rgb(40, 40, 40);
     color: white;
     min-height: 2em;
     padding: 0;
+    margin: 0;
 }
 .video-player{
     flex-grow: 1;
@@ -166,45 +168,58 @@ body{
 .spotify-player{
     grid-area: spotify-player;
     color: white;
-    display: grid;
-    grid-template-areas: 
-    "track-image track-info controls"
-    "duration duration duration";
-    ;
-    grid-template-columns: 2em 1fr 1fr;
+    display: flex;
     align-items: center;
-    justify-content: center;
-    min-height: 8em;
+    justify-content: space-between;
+    padding: 0.5em 1em;
+    max-height: 8em;
+    min-width: 0;
     background-color: rgb(0, 0, 0);
     border-bottom: 1px solid #bacb00;
     border-top: 1px solid #bacb00;
 }
 .controls{
-    grid-area: controls;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 }
-.track-image{
-    grid-area: track-image;
-    height: 90%;
-    border: white solid 1px;
-    border-radius: 5px;
+.duration {
+    flex-basis: 100%;
+    margin-top: 0.5em;
 }
 .track-info{
-    grid-area: track-info;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-start;
     margin: 0;
     padding: 0;
+    width: 20em;
 }
-.duration{
-    grid-area: duration;
+.track-info img{
+    max-height: 8em;
+    border: white solid 1px;
+    border-radius: 5px;
+    margin-right: 1em;
+}
+.artist-info{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    font-size: medium;
+    justify-content: center;
+}
+.volume-input{
     display: flex;
     align-items: center;
-    width: 100%;
+}
+.volume-input img{
+    width: 3em;
+    margin-right: 0.5em;
+    background-color: white;
+    border-radius: 20%;
+    color: white;
 }
 .duration input[type="range"]{
     width: 100%;
