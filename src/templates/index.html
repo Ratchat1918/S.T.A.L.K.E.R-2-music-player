@@ -10,17 +10,27 @@
     <div id="loader-overlay"><div class="loader"></div></div>
     <div id="play-button-overlay"><button id="play-button">Play</button></div>
     <div id="spotify-auth-overlay"><a href="http://127.0.0.1:5000/auth/login" id="spotify-auth-button">Connect Spotify</a></div>
-    <nav class="navbar"><h1>Stlaker music player</h1></nav>
+    <nav class="navbar"><h1>Stalker music player</h1></nav>
     <div class="sidebar">
         <ul>
             <li id="rostok_btn"><p>Rostok</p></li>
-            <li id="terikon_btn"><p>Terikon</p></li>
+            <li id="slag_heap_btn"><p>Slag Heap</p></li>
+            <li id="yaniv_btn"><p>Yaniv</p></li>
+            <li id="stc_malachite_btn"><p>STC Malachite</p></li>
+            <li id="kazkoviy_camp_btn"><p>Kazkoviy Camp</p></li>
+            <li id="sultansk_btn"><p>Sultansk</p></li>
         </ul>
     </div>
     <div class="main-content">
         <video class="video-player" autoplay loop>
-            <source src="/static/rostok_day.mp4" type="video/mp4">
+            <source src="/static/videos/rostok.mp4" type="video/mp4">
         </video>
+        <button id="video-audio-popover" popovertarget="video-audio-controls">
+            <img src="./static/audio.svg">
+        </button>
+        <div popover id="video-audio-controls" data-trigger="hover">
+            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
+        </div>
     </div>
     <div class="spotify-player">
         <div class="track-info">

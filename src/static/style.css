@@ -3,7 +3,7 @@
     src: url('../static/AmazS.T.A.L.K.E.R.Italic.ttf') format('truetype');
 }
 @font-face{
-    font-family: '  Capture it';
+    font-family: 'Capture it';
     src: url('../static/Capture\ it.ttf') format('truetype');
 }
 body{
@@ -130,13 +130,24 @@ body{
 }
 .sidebar li p{
     cursor: pointer;
-    margin: 0;
     font-size: 2rem;
 }
-.sidebar li p:hover{
-    text-decoration: underline;
-    margin: 0;
+.sidebar li{
     width: 100%;
+    display: flex;
+    margin-top: 16px;
+    justify-content: center;
+}
+.sidebar li p{
+    font-family: 'Capture it';
+    font-size: 1.5rem;
+    display: flex;
+    margin: 0;
+    justify-content: center;
+}
+.sidebar li p:hover{
+    color: #000000;
+    background-color: #ffffff;
 }
 .main-content{
     display: flex;
@@ -164,6 +175,27 @@ body{
     object-fit: fill;
     margin: 0;
     padding: 0;
+}
+#video-audio-popover{
+    position: absolute;
+    top: 20%;
+    left: 95%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+#video-audio-popover img{
+    width: 3em;
+    margin-right: 0.5em;
+    background-color: white;
+    border-radius: 20%;
+    color: white;
+}
+#video-audio-controls:popover-open{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .spotify-player{
     grid-area: spotify-player;

@@ -6,8 +6,9 @@ async function fetchSpotifyToken() {
     return token;
 }
 async function playPlaylist(deviceId, token, playlistId) {
+    console.log(`Playing playlist ${playlistId} on device ${deviceId}`);
     const playlistUri = `spotify:playlist:${playlistId}`;
-    await fetch(`https://api.spotify.com/v1/me/player/shuffle?state=true&device_id=${deviceId}`, {
+    await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
         method: 'PUT',
         body: JSON.stringify({ context_uri: playlistUri }),
         headers: {
@@ -73,15 +74,22 @@ window.onload = async function() {
         });
 
         document.getElementById('play-pause-button').addEventListener('click', async function() {
-            await playPlaylist(deviceId, token, '3Cj6zGxEKM65y2Dgl7Cztb');
+            console.log(`play-pause-button clicked. Current track ID: ${currentTrackId}, isPaused: ${isPaused}`);
+            if (!playlistStarted) {
+                await playPlaylist(deviceId, token, '3Cj6zGxEKM65y2Dgl7Cztb');
+                playlistStarted = true;
+                document.getElementById('play-pause-button').textContent ='⏸';
+                isPaused = false;
+            }
             player.togglePlay();
-                if(isPaused===false){
-                    document.getElementById('play-pause-button').textContent ='▶';
-                    isPaused = true;
-                }else{
-                    document.getElementById('play-pause-button').textContent ='⏸';
-                    isPaused = false;
-                }});
+            if(isPaused===false){
+                document.getElementById('play-pause-button').textContent ='▶';
+                isPaused = true;
+            }else{
+                document.getElementById('play-pause-button').textContent ='⏸';
+                isPaused = false;
+            }
+        });
         document.getElementById('prev-button').addEventListener('click', function() {
             player.previousTrack();
         });
@@ -90,6 +98,7 @@ window.onload = async function() {
         });
         document.getElementById('volume-slider').addEventListener('input', function() {
             const volume = parseFloat(this.value);
+            console.log(`Volume slider changed. New volume: ${volume}`);
             previousVolume = volume;
             player.setVolume(volume);
             if(volume === 0){
@@ -121,7 +130,72 @@ window.onload = async function() {
     }
 };
 
-const locations = ['rostok', 'terikon'];
+document.getElementById('rostok_btn').addEventListener('click', function() {
+    const videoPlayer = document.querySelector('.video-player');
+    if (videoPlayer) {
+        if(videoPlayer.src.endsWith('rostok.mp4')){
+            return;
+        }else{
+           videoPlayer.src = './static/videos/rostok.mp4';
+            videoPlayer.play(); 
+        }
+    }
+});
+document.getElementById('slag_heap_btn').addEventListener('click', function() {
+    const videoPlayer = document.querySelector('.video-player');
+    if (videoPlayer) {
+        if(videoPlayer.src.endsWith('slag_heap.mp4')){
+            return;
+        }else{
+           videoPlayer.src = './static/videos/slag_heap.mp4';
+            videoPlayer.play() 
+        };
+    }
+});
+document.getElementById('yaniv_btn').addEventListener('click', function() {
+    const videoPlayer = document.querySelector('.video-player');
+    if (videoPlayer) {
+        if(videoPlayer.src.endsWith('yaniv.mp4')){
+            return;
+        }else{
+           videoPlayer.src = './static/videos/yaniv.mp4';
+            videoPlayer.play(); 
+        };
+    }
+});
+document.getElementById('stc_malachite_btn').addEventListener('click', function() {
+    const videoPlayer = document.querySelector('.video-player');
+    if (videoPlayer) {
+        if(videoPlayer.src.endsWith('stc_malachite.mp4')){
+            return;
+        }else{
+           videoPlayer.src = './static/videos/stc_malachite.mp4';
+            videoPlayer.play(); 
+        };
+    }
+});
+document.getElementById('kazkoviy_camp_btn').addEventListener('click', function() {
+    const videoPlayer = document.querySelector('.video-player');
+    if (videoPlayer) {
+        if(videoPlayer.src.endsWith('kazkoviy_camp.mp4')){
+            return;
+        }else{
+           videoPlayer.src = './static/videos/kazkoviy_camp.mp4';
+            videoPlayer.play(); 
+        };
+    }
+});
+document.getElementById('sultansk_btn').addEventListener('click', function() {
+    const videoPlayer = document.querySelector('.video-player');
+    if (videoPlayer) {
+        if(videoPlayer.src.endsWith('sultansk.mp4')){
+            return;
+        }else{
+            videoPlayer.src = './static/videos/sultansk.mp4';
+            videoPlayer.play();
+        };
+    }
+});
 document.getElementById('play-button').addEventListener('click', function() {
     document.getElementById('play-button').style.display = 'none';
     document.getElementById('play-button-overlay').style.visibility = 'hidden';
