@@ -1,6 +1,6 @@
 import base64
 from time import time
-from flask import Flask, json, render_template, redirect, request
+from flask import Flask, render_template, redirect, request
 from flask_cors import CORS
 import requests
 import os

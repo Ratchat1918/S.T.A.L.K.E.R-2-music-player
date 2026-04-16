@@ -6,9 +6,8 @@ async function fetchSpotifyToken() {
     return token;
 }
 async function playPlaylist(deviceId, token, playlistId) {
-    console.log(`Playing playlist ${playlistId} on device ${deviceId}`);
     const playlistUri = `spotify:playlist:${playlistId}`;
-    await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
+    await fetch(`https://api.spotify.com/v1/me/player/shuffle?state=true&device_id=${deviceId}`, {
         method: 'PUT',
         body: JSON.stringify({ context_uri: playlistUri }),
         headers: {
@@ -23,10 +22,12 @@ let currentTrackId = null;
 let playlistStarted = false;
 let audioOn =true;
 let previousVolume = null;
+let video = document.getElementById("video-player");
 
 window.onload = async function() {
     const loader = document.querySelector('.loader');
     const videoPlayer = document.querySelector('.video-player');
+    video.volume = 0.5;
     videoPlayer.pause();
     if (loader) {
         setTimeout(function() {
@@ -55,7 +56,6 @@ window.onload = async function() {
                 console.error('User is not playing music through the Web Playback SDK');
                 return;
             }
-            console.log(state);
             player.state.shuffle = true;
         }); 
         player.addListener('player_state_changed', state => {
@@ -67,6 +67,9 @@ window.onload = async function() {
             document.getElementById('track-name').textContent = state.track_window.current_track.name;
             document.getElementById('artist-name').textContent = state.track_window.current_track.artists.map(artist => artist.name).join(', ');
             isPaused = state.paused;
+            const durationInput = document.getElementById('track-duration');
+            durationInput.max = state.duration;
+            durationInput.value = state.position;
         });
         let deviceId = null;
         player.addListener('ready', ({ device_id }) => {
@@ -74,20 +77,20 @@ window.onload = async function() {
         });
 
         document.getElementById('play-pause-button').addEventListener('click', async function() {
-            console.log(`play-pause-button clicked. Current track ID: ${currentTrackId}, isPaused: ${isPaused}`);
-            if (!playlistStarted) {
-                await playPlaylist(deviceId, token, '3Cj6zGxEKM65y2Dgl7Cztb');
-                playlistStarted = true;
-                document.getElementById('play-pause-button').textContent ='⏸';
+            player.togglePlay();
+            if(isPaused===false && playlistStarted===true){
+                document.getElementById('play-img').src ='./static/play.svg';
+                isPaused = true;
+            }else if(isPaused===true && playlistStarted===true){
+                document.getElementById('play-img').src ='./static/pause.svg';
                 isPaused = false;
             }
-            player.togglePlay();
-            if(isPaused===false){
-                document.getElementById('play-pause-button').textContent ='▶';
-                isPaused = true;
-            }else{
-                document.getElementById('play-pause-button').textContent ='⏸';
+            if (!playlistStarted) {
+                await playPlaylist(deviceId, token, '3Cj6zGxEKM65y2Dgl7Cztb');
+                player.nextTrack();
+                playlistStarted = true;
                 isPaused = false;
+                document.getElementById('play-img').src ='./static/pause.svg';
             }
         });
         document.getElementById('prev-button').addEventListener('click', function() {
@@ -96,35 +99,64 @@ window.onload = async function() {
         document.getElementById('next-button').addEventListener('click', function() {
             player.nextTrack();
         });
-        document.getElementById('volume-slider').addEventListener('input', function() {
-            const volume = parseFloat(this.value);
-            console.log(`Volume slider changed. New volume: ${volume}`);
+        document.querySelector('.volume-input').addEventListener('input', function(event) {
+            const volume = parseFloat(event.target.value);
             previousVolume = volume;
             player.setVolume(volume);
+            video.volume = volume *0.4;
             if(volume === 0){
+                video.volume = 0.5;
                 audioOn = false;
                 document.getElementById("audio-btn").src = "./static/audio_off.svg";
+            }else if(volume > 0){
+                audioOn = true;
+                document.getElementById("audio-btn").src = "./static/audio.svg";
+                document.querySelector('.volume-input').value = volume;
             }
         });
         document.getElementById("audio-btn").addEventListener('click', function(){
-            if(previousVolume===0){
+            if(previousVolume===0 ){
                 previousVolume = 0.5;
             }
             if(audioOn){
                 player.setVolume(0);
-                document.getElementById("volume-slider").value = 0;
+                document.querySelector('.volume-input').value = 0;
                 audioOn = false;
                 document.getElementById("audio-btn").src = "./static/audio_off.svg";
             }else{
-                if(previousVolume===null){
+                if(previousVolume===null || previousVolume === 0){
                     previousVolume = 0.5;
                 }
                 player.setVolume(previousVolume);
-                document.getElementById("volume-slider").value = previousVolume;
+                document.querySelector('.volume-input').value = previousVolume;
                 audioOn = true;
                 document.getElementById("audio-btn").src = "./static/audio.svg";
             }
         });
+        const durationInput = document.getElementById('track-duration');
+        let isSeeking = false;
+
+        durationInput.addEventListener('input', function (e) {
+            isSeeking = true;
+        });
+
+        durationInput.addEventListener('change', function (e) {
+            const seekPosition = parseInt(e.target.value, 10);
+            player.seek(seekPosition);
+            isSeeking = false;
+        });
+        setInterval(() => {
+            if (!isSeeking && player && typeof player.getCurrentState === 'function') {
+                player.getCurrentState().then(state => {
+                    if (state) {
+                        durationInput.value = state.position;
+                    }
+                    if(state && state.position === state.duration){
+                        durationInput.value = 0;
+                        player.nextTrack();
+                    }
+                });
+            }}, 1000); 
     } else {
         document.getElementById('spotify-auth-overlay').style.visibility = 'visible';
     }
@@ -209,3 +241,4 @@ document.getElementById('spotify-auth-button').addEventListener('click',  functi
     document.getElementById('spotify-auth-overlay').style.visibility = 'hidden';
     document.getElementById('play-button').style.display = 'block';
 });
+

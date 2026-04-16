@@ -22,15 +22,9 @@
         </ul>
     </div>
     <div class="main-content">
-        <video class="video-player" autoplay loop>
+        <video id="video-player" class="video-player" autoplay loop>
             <source src="/static/videos/rostok.mp4" type="video/mp4">
         </video>
-        <button id="video-audio-popover" popovertarget="video-audio-controls">
-            <img src="./static/audio.svg">
-        </button>
-        <div popover id="video-audio-controls" data-trigger="hover">
-            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
-        </div>
     </div>
     <div class="spotify-player">
         <div class="track-info">
@@ -41,9 +35,9 @@
             </div>
         </div>
         <div class="controls">
-            <button id="prev-button">&lt;&lt;</button>
-            <button id="play-pause-button">▶</button>
-            <button id="next-button">&gt;&gt;</button>
+            <button id="prev-button"><img src="./static/arrow.svg" alt="Previous"></button>
+            <button id="play-pause-button"><img id="play-img" src="./static/play.svg" alt="Play/Pause"></button>
+            <button id="next-button"><img src="./static/arrow.svg" alt="Next"></button>
             <div class="duration">
                 <input type="range" id="track-duration" value="0" min="0" max="100" step="1">
             </div>
@@ -53,7 +47,10 @@
             <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
         </div>
     </div>
-    <footer class="footer"><p>Contact us: email@example.com</p></footer>
+    <footer class="footer">
+        <p>Made by Ratchat1918</p>
+        <a id="github-link" target="_blank" href="https://github.com/Ratchat1918"><img src="./static/github.svg" alt="GitHub"></a>
+    </footer>
 </body>
 <script type="module" src="/static/script.js"></script>
 <script src="https://sdk.scdn.co/spotify-player.js"></script>
