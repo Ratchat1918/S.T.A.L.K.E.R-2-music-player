@@ -40,7 +40,7 @@ body{
 .loader {
     transform: translate(-50%, -50%);
     border: 16px solid #000000;
-    border-top: 16px solid #bacb00;
+    border-top: 16px solid #ffffff;
     border-radius: 50%;
     width: clamp(40px, 6vw, 120px);
     height: clamp(40px, 6vw, 120px);
@@ -66,9 +66,9 @@ body{
     background-color: rgba(0, 0, 0, 0.84);
     z-index: 2;
 }
-#play-button{
-    font-size: clamp(20px, 3vw, 60px);
-    padding: 0.5em 1em;
+#play-button img{
+    width: 6em;
+    background: transparent;
     cursor: pointer;
 }
 #spotify-auth-overlay{
@@ -92,24 +92,25 @@ body{
     cursor: pointer;
     color: white;
     background-color: rgb(31, 31, 31);
-    border: 1px solid #bacb00;
+    border: 1px solid #ffffff;
     text-decoration: none;
 }
 .navbar{
     grid-area: navbar;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     color: white;
     background-color: rgb(31, 31, 31);
     font-family: 'AmazS.T.A.L.K.E.R.Italic';
-    border-bottom: 1px solid #bacb00;
-    padding: 1rem;
-    min-height: 4em;
+    border-bottom: 1px solid #ffffff;
+    padding: 1.5rem;
+    max-height: 3em;
     margin: 0;
 }
 .navbar h1{
-    margin: 0;
     font-size: 2.5rem;
+    margin-left: auto;
 }
 .sidebar{
     grid-area: sidebar;
@@ -117,20 +118,15 @@ body{
     flex-direction: column;
     align-items: center;
     font-family: 'AmazS.T.A.L.K.E.R.Italic';
-    font-size: 6em;
     background-color: rgb(31, 31, 31);
     color: white;
-    border-right: 1px solid #bacb00;
+    border-right: 1px solid #ffffff;
     padding: 0;
 }
 .sidebar ul{
     list-style: none;
     padding: 0;
     margin: 0;
-}
-.sidebar li p{
-    cursor: pointer;
-    font-size: 2rem;
 }
 .sidebar li{
     width: 100%;
@@ -140,9 +136,10 @@ body{
 }
 .sidebar li p{
     font-family: 'Capture it';
-    font-size: 1.5rem;
+    font-size: large;
     display: flex;
     margin: 0;
+    cursor: pointer;
     justify-content: center;
 }
 .sidebar li p:hover{
@@ -166,7 +163,7 @@ body{
     grid-area: footer;
     background-color: rgb(40, 40, 40);
     color: white;
-    min-height: 3em;
+    min-height: 6em;
     padding: 1em;
     margin: 0;
     font-size: 0.8em;
@@ -197,8 +194,8 @@ body{
     max-height: 8em;
     min-width: 0;
     background-color: rgb(0, 0, 0);
-    border-bottom: 1px solid #bacb00;
-    border-top: 1px solid #bacb00;
+    border-bottom: 1px solid #ffffff;
+    border-top: 1px solid #ffffff;
 }
 #play-pause-button img{
     width: 2em;
@@ -238,14 +235,13 @@ body{
     flex-direction: row;
     justify-content: flex-start;
     margin: 0;
-    padding: 0;
     width: 20em;
+    gap: 1em;
 }
 .track-info img{
     max-height: 8em;
-    border: white solid 1px;
+    border: 1px solid #ffffff;
     border-radius: 5px;
-    margin-right: 1em;
 }
 .artist-info{
     display: flex;
@@ -255,7 +251,7 @@ body{
     justify-content: center;
 }
 .artist-info p{
-    color: white;
+    color: #ffffff;
     margin: 0;
     padding: 0;
 }
@@ -272,10 +268,10 @@ body{
 .volume-input input[type="range"]{
     width: 8em;
     height: 0.4em;
-    background: #bacb00;
+    background: #ffffff;
     border-radius: 4px;
     outline: none;
-    accent-color: #bacb00;
+    accent-color: #ffffff;
     transition: background 0.3s;
     margin: 0 0.5em;
 }
@@ -285,7 +281,7 @@ body{
     height: 1em;
     border-radius: 50%;
     background: #222;
-    border: 2px solid #bacb00;
+    border: 2px solid #ffffff;
     cursor: pointer;
     transition: background 0.3s;
 }
@@ -294,7 +290,7 @@ body{
     height: 1em;
     border-radius: 50%;
     background: #222;
-    border: 2px solid #bacb00;
+    border: 2px solid #ffffff;
     cursor: pointer;
 }
 .volume-input input[type="range"]::-ms-thumb {
@@ -302,39 +298,39 @@ body{
     height: 1em;
     border-radius: 50%;
     background: #222;
-    border: 2px solid #bacb00;
+    border: 2px solid #ffffff;
     cursor: pointer;
 }
 .volume-input input[type="range"]:focus::-webkit-slider-thumb {
-    background: #bacb00;
+    background: #ffffff;
 }
 .volume-input input[type="range"]::-moz-range-thumb {
     width: 1em;
     height: 1em;
     border-radius: 50%;
     background: #222;
-    border: 2px solid #bacb00;
+    border: 2px solid #ffffff;
     cursor: pointer;
 }
 .volume-input input[type="range"]:focus::-moz-range-thumb {
-    background: #bacb00;
+    background: #ffffff;
 }
 .volume-input input[type="range"]::-ms-thumb {
     width: 1em;
     height: 1em;
     border-radius: 50%;
     background: #222;
-    border: 2px solid #bacb00;
+    border: 2px solid #ffffff;
     cursor: pointer;
 }
 .volume-input input[type="range"]:focus::-ms-thumb {
-    background: #bacb00;
+    background: #ffffff;
 }
 .volume-input input[type="range"]::-ms-fill-lower {
-    background: #bacb00;
+    background: #ffffff;
 }
 .volume-input input[type="range"]::-ms-fill-upper {
-    background: #bacb00;
+    background: #ffffff;
 }
 .volume-input input[type="range"]:focus {
     outline: none;
@@ -343,10 +339,10 @@ body{
 .duration input[type="range"] {
     width: 100%;
     height: 0.5em;
-    background: #bacb00;
+    background: #ffffff;
     border-radius: 4px;
     outline: none;
-    accent-color: #bacb00;
+    accent-color: #ffffff;
     transition: background 0.3s;
 }
 .duration input[type="range"]::-webkit-slider-thumb {
@@ -355,40 +351,40 @@ body{
     height: 1.2em;
     border-radius: 50%;
     background: #222;
-    border: 2px solid #bacb00;
+    border: 2px solid #ffffff;
     cursor: pointer;
     transition: background 0.3s;
 }
 .duration input[type="range"]:focus::-webkit-slider-thumb {
-    background: #bacb00;
+    background: #ffffff;
 }
 .duration input[type="range"]::-moz-range-thumb {
     width: 1.2em;
     height: 1.2em;
     border-radius: 50%;
     background: #222;
-    border: 2px solid #bacb00;
+    border: 2px solid #ffffff;
     cursor: pointer;
 }
 .duration input[type="range"]:focus::-moz-range-thumb {
-    background: #bacb00;
+    background: #ffffff;
 }
 .duration input[type="range"]::-ms-thumb {
     width: 1.2em;
     height: 1.2em;
     border-radius: 50%;
     background: #222;
-    border: 2px solid #bacb00;
+    border: 2px solid #ffffff;
     cursor: pointer;
 }
 .duration input[type="range"]:focus::-ms-thumb {
-    background: #bacb00;
+    background: #ffffff;
 }
 .duration input[type="range"]::-ms-fill-lower {
-    background: #bacb00;
+    background: #ffffff;
 }
 .duration input[type="range"]::-ms-fill-upper {
-    background: #bacb00;
+    background: #ffffff;
 }
 .duration input[type="range"]:focus {
     outline: none;

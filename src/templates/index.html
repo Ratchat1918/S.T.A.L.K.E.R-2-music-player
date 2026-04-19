@@ -8,22 +8,26 @@
 </head>
 <body>
     <div id="loader-overlay"><div class="loader"></div></div>
-    <div id="play-button-overlay"><button id="play-button">Play</button></div>
+    <div id="play-button-overlay"><button id="play-button"><img src="./static/play.svg" alt="Start"></button></div>
     <div id="spotify-auth-overlay"><a href="http://127.0.0.1:5000/auth/login" id="spotify-auth-button">Connect Spotify</a></div>
     <nav class="navbar"><h1>Stalker music player</h1></nav>
     <div class="sidebar">
         <ul>
+            <li id="zalissya_btn"><p>Zalissya</p></li>
+            <li id="chemical_plant_btn"><p>Chemical Plant</p></li>
+            <li id="duga_btn"><p>Duga</p></li>
+            <li id="enerhetyk_btn"><p>Enerhetyk Palace of Culture</p></li>
+            <li id="rookie_village_btn"><p>Rookie Village</p></li>
             <li id="rostok_btn"><p>Rostok</p></li>
+            <li id="shelter_btn"><p>Shelter</p></li>
             <li id="slag_heap_btn"><p>Slag Heap</p></li>
-            <li id="yaniv_btn"><p>Yaniv</p></li>
-            <li id="stc_malachite_btn"><p>STC Malachite</p></li>
-            <li id="kazkoviy_camp_btn"><p>Kazkoviy Camp</p></li>
             <li id="sultansk_btn"><p>Sultansk</p></li>
+            <li id="yaniv_btn"><p>Yaniv Station</p></li>
         </ul>
     </div>
     <div class="main-content">
-        <video id="video-player" class="video-player" autoplay loop>
-            <source src="/static/videos/rostok.mp4" type="video/mp4">
+        <video id="video-player" class="video-player" autoplay loop> 
+            <source src="/static/videos/zalissya.mp4" type="video/mp4">
         </video>
     </div>
     <div class="spotify-player">

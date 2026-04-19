@@ -27,16 +27,14 @@ let video = document.getElementById("video-player");
 window.onload = async function() {
     const loader = document.querySelector('.loader');
     const videoPlayer = document.querySelector('.video-player');
-    video.volume = 0.5;
+    video.volume = 0.4;
     videoPlayer.pause();
     if (loader) {
-        setTimeout(function() {
-            loader.style.display = 'none';
+       loader.style.display = 'none';
             document.getElementById('loader-overlay').style.visibility = 'hidden';
             document.getElementById('play-button-overlay').style.visibility = 'visible';
             document.getElementById('play-button').style.display = 'block';
-        }, 500);
-    }
+        }
     let token = await fetchSpotifyToken();
     if(token!==null && token!==undefined) {
         const player = new window.Spotify.Player({
@@ -65,7 +63,7 @@ window.onload = async function() {
             currentTrackId = state.track_window.current_track.id;
             document.getElementById('track-image').src = state.track_window.current_track.album.images[0].url;
             document.getElementById('track-name').textContent = state.track_window.current_track.name;
-            document.getElementById('artist-name').textContent = state.track_window.current_track.artists.map(artist => artist.name).join(', ');
+            document.getElementById('artist-name').textContent = `by: ${state.track_window.current_track.artists.map(artist => artist.name).join(', ')}`;
             isPaused = state.paused;
             const durationInput = document.getElementById('track-duration');
             durationInput.max = state.duration;
@@ -103,9 +101,7 @@ window.onload = async function() {
             const volume = parseFloat(event.target.value);
             previousVolume = volume;
             player.setVolume(volume);
-            video.volume = volume *0.4;
             if(volume === 0){
-                video.volume = 0.5;
                 audioOn = false;
                 document.getElementById("audio-btn").src = "./static/audio_off.svg";
             }else if(volume > 0){
@@ -195,28 +191,6 @@ document.getElementById('yaniv_btn').addEventListener('click', function() {
         };
     }
 });
-document.getElementById('stc_malachite_btn').addEventListener('click', function() {
-    const videoPlayer = document.querySelector('.video-player');
-    if (videoPlayer) {
-        if(videoPlayer.src.endsWith('stc_malachite.mp4')){
-            return;
-        }else{
-           videoPlayer.src = './static/videos/stc_malachite.mp4';
-            videoPlayer.play(); 
-        };
-    }
-});
-document.getElementById('kazkoviy_camp_btn').addEventListener('click', function() {
-    const videoPlayer = document.querySelector('.video-player');
-    if (videoPlayer) {
-        if(videoPlayer.src.endsWith('kazkoviy_camp.mp4')){
-            return;
-        }else{
-           videoPlayer.src = './static/videos/kazkoviy_camp.mp4';
-            videoPlayer.play(); 
-        };
-    }
-});
 document.getElementById('sultansk_btn').addEventListener('click', function() {
     const videoPlayer = document.querySelector('.video-player');
     if (videoPlayer) {
@@ -224,6 +198,72 @@ document.getElementById('sultansk_btn').addEventListener('click', function() {
             return;
         }else{
             videoPlayer.src = './static/videos/sultansk.mp4';
+            videoPlayer.play();
+        };
+    }
+});
+document.getElementById('zalissya_btn').addEventListener('click', function() {
+    const videoPlayer = document.querySelector('.video-player');
+    if (videoPlayer) {
+        if(videoPlayer.src.endsWith('zalissya.mp4')){
+            return;
+        }else{
+            videoPlayer.src = './static/videos/zalissya.mp4';
+            videoPlayer.play();
+        };
+    }
+});
+document.getElementById('chemical_plant_btn').addEventListener('click', function() {
+    const videoPlayer = document.querySelector('.video-player');
+    if (videoPlayer) {
+        if(videoPlayer.src.endsWith('chemical_plant.mp4')){
+            return;
+        }else{
+            videoPlayer.src = './static/videos/chemical_plant.mp4';
+            videoPlayer.play();
+        };
+    }
+});
+document.getElementById('shelter_btn').addEventListener('click', function() {
+    const videoPlayer = document.querySelector('.video-player');
+    if (videoPlayer) {
+        if(videoPlayer.src.endsWith('shelter.mp4')){
+            return;
+        }else{
+            videoPlayer.src = './static/videos/shelter.mp4';
+            videoPlayer.play();
+        };
+    }
+});
+document.getElementById('enerhetyk_btn').addEventListener('click', function() {
+    const videoPlayer = document.querySelector('.video-player');
+    if (videoPlayer) {
+        if(videoPlayer.src.endsWith('enerhetyk.mp4')){
+            return;
+        }else{
+            videoPlayer.src = './static/videos/enerhetyk.mp4';
+            videoPlayer.play();
+        };
+    }
+});
+document.getElementById('rookie_village_btn').addEventListener('click', function() {
+    const videoPlayer = document.querySelector('.video-player');
+    if (videoPlayer) {
+        if(videoPlayer.src.endsWith('rookie_village.mp4')){
+            return;
+        }else{
+            videoPlayer.src = './static/videos/rookie_village.mp4';
+            videoPlayer.play();
+        };
+    }
+});
+document.getElementById('duga_btn').addEventListener('click', function() {
+    const videoPlayer = document.querySelector('.video-player');
+    if (videoPlayer) {
+        if(videoPlayer.src.endsWith('duga.mp4')){
+            return;
+        }else{
+            videoPlayer.src = './static/videos/duga.mp4';
             videoPlayer.play();
         };
     }
@@ -241,4 +281,3 @@ document.getElementById('spotify-auth-button').addEventListener('click',  functi
     document.getElementById('spotify-auth-overlay').style.visibility = 'hidden';
     document.getElementById('play-button').style.display = 'block';
 });
-
